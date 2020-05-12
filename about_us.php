@@ -74,15 +74,15 @@ session_destroy();
              <br>
              <div class="second-image-row">
                  <div id="items">
-                     <img src="https://travelbeest.be/Images_Morocco/header-morocco.jpg" alt="">
+                     <img src="https://guidetoiceland.imgix.net/4898/x/0/?auto=format%2Ccompress&fit=crop&crop=faces%2Cedges%2Ccenter&ixlib=react-8.6.4&h=430&w=1400" alt="">
                  </div>
              </div>
              <div class="third-image-row">
                        <div id="items"  class="third-items">
-                           <img src="https://images2.alphacoders.com/545/thumb-1920-545321.jpg" alt="">
+                           <img src="https://images.memphistours.com/large/977385592ec4e946d07172c7f7156154.jpg" alt="">
                        </div>
                        <div id="items" class="third-items">
-                            <img src="https://wallpapercave.com/wp/rorwfSb.jpg" alt="">
+                            <img src="https://joowbar.com/wp-content/uploads/2019/08/JOOWBAR_VISITER_TANGER_MAROC_ESSENTIEL_GUIDE_RIAD-68.jpg" alt="">
                        </div>
                    </div>
          </div>
