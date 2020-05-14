@@ -22,7 +22,7 @@ $messageSession="";
   if(isset($_SESSION["flying_from"]) && isset($_SESSION["flying_to"])){
     $flying_to= $_SESSION["flying_to"];
     $flying_from=$_SESSION["flying_from"];
-    $query = "SELECT * FROM flights_list WHERE flyingFrom='$flying_from' AND flyingTo='$flying_to'";
+    $query = "SELECT * FROM flights_list WHERE flyingFrom='$flying_from' AND flyingTo='$flying_to' AND seats>0";
     $req=request($query) or die("request ne pas valid tester request");
   $row=mysqli_num_rows($req);
   $messageSession="
