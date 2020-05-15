@@ -35,10 +35,6 @@ include 'action.php';
             <p><a href="about_us.php">Discover more</a></p>
         </div>
     </div>
-
-        <?php if($messageExist):?>
-        <div id="alert"> Sorry id déja exist !</div>
-        <?php endif;?>
   <div  id="inpContainer" class="inputs-container2">
         <div class="error"></div>
         <br>

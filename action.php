@@ -1,11 +1,7 @@
 <?php
 include 'config.php';
 //affiche
-
-$msg=false;
-if($_SERVER["PHP_SELF"]==='/air_plane-master/home.php'){
-
-  $msg=true;
+if($_SERVER["PHP_SELF"]==='/Application-pour-la-gestion-des-r-servations-des-vols-a-riens/home.php'){
 $query = "SELECT DISTINCT flyingFrom, flyingTo from flights_list;";
 $l=request($query);
  $rows=mysqli_num_rows($l);
@@ -33,7 +29,7 @@ text-align: center;'> Welcome To Morocco AirLines  From ". $flying_from ." To ".
 
   //reservation
   $ajouter=false;
-  $messageExist=false;
+  $lastId="";
   if(isset($_POST["reservation"])){
     $id_reservation=$_POST["id_reserver"];
     $fullName=$_POST["f_name"];
@@ -48,24 +44,18 @@ text-align: center;'> Welcome To Morocco AirLines  From ". $flying_from ." To ".
     $price=$_POST["price"];
     $idAir=$_POST["id_air"];
     $_SESSION["id"]=$_POST["id_reserver"];
-    $request="INSERT INTO `reservation` VALUES(60,'kamal chokran','06121898998','ayoub.elbouinany99@gmail.fr','pKKjj','2020-05-29','2020-05-31',1,1,'Bussness Class','1100 DH',2)";
-
     $request="INSERT INTO `reservation` VALUES($id_reservation,'$fullName','$phone','$email','$num_passport','$departing','$returning',$adults,$children,'$travel_class','$price','$idAir')";
-     request($request) or die("<div style='background-color: #e04c4c;text-align: center;padding: 20px;margin: 10%;color: white;font-family: fantasy;'>Sorry mister $fullName your id déja exist </div>");
-     $ajouter=true;
+    if(mysqli_query($con,$request)){
+      $lastId=mysqli_insert_id($con);
+      $ajouter=true;
       sleep(1.5);
-  }
-  //Modifier seats in table flights_list;
-  $modifier=false;
-  if( isset($_GET["seats"]) &&  isset($_GET["idAir"]) ){
-    $seats=$_GET["seats"];
-    $idAir=$_GET["idAir"];
-     $update= "UPDATE flights_list set seats=seats-$seats where id=$idAir";
-     request($update);
-     $modifier=true;
+    }else{
+      die("<div style='background-color: #e04c4c;text-align: center;padding: 20px;margin: 10%;color: white;font-family: fantasy;'>Sorry mister $fullName your id déja exist </div>");
+    }
   }
 
-  //showing the final details for reservation
+
+   //showing the final details for reservation
 $id_reserver="";
 $IdReservation="";
 $fullName= "";
@@ -82,9 +72,7 @@ $flyingFrom= "";
 $flyingTo= "";
 $seats= "";
 $idAir="";
-if(isset($_SESSION["id"])){
-$id_reserver= $_SESSION["id"] ;
-$request="select *, (Adult+children) as 'seats' from reservation,flights_list where flights_list.id=reservation.id_flight  AND reservation.id_reservation=$id_reserver";
+$request="select *, (Adult+children) as 'seats' from reservation,flights_list where flights_list.id=reservation.id_flight  AND reservation.id_reservation='$lastId'";
 $fetchRow=request($request);
 if(isset($fetchRow)){
 $readRow=mysqli_fetch_row($fetchRow);
@@ -104,5 +92,13 @@ $flyingFrom= $readRow[13];
 $flyingTo= $readRow[14];
 $seats=$readRow[18];
 }
-}
+  //Modifier seats in table flights_list;
+  $modifier=false;
+  if( isset($_GET["seats"]) &&  isset($_GET["idAir"]) ){
+    $seats=$_GET["seats"];
+    $idAir=$_GET["idAir"];
+     $update= "UPDATE flights_list set seats=seats-$seats where id=$idAir";
+     request($update);
+     $modifier=true;
+  }
 ?>

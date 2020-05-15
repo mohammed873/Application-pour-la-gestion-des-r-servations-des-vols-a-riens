@@ -33,7 +33,7 @@ include 'action.php';
             <h3>Why Morocco AirLines</h3>
             <p><a href="about_us.php">Discover more</a></p>
             <br>
-            <?php echo $messageSession ?>
+            <?php echo $messageSession; ?>
         </div>
     </div>
 

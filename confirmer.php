@@ -38,8 +38,11 @@ include 'action.php';
 
 
         <br><br>
-        <?php  if($ajouter):
-            echo "<div class='add'> Your welcome  $fullName</div>";
+        <?php if($modifier==true){
+     die("<div id='messageConfirmation' class='add' >Bien Confirmer $fullName <a href='about_us.php' >Show More !</a>");
+ }
+        if($ajouter):
+             echo "<div class='add'> Your welcome mister $fullName</div>";
         endif; ?>
         <br>
         <br>
@@ -64,15 +67,9 @@ include 'action.php';
           <p> Seats children : <strong> <?php echo $children;?></strong></p>
           <p> travel class: <strong> <?php echo $TravelClass;?></strong></p>
           <p> price : <strong> <?php echo $Price;?></strong></p>
-          <?php if($modifier==false){?>
           <div id="c_bien_confirm"><a href="confirmer.php?idAir=<?php echo $idAir;?>&seats=<?php echo $seats ;?>" name="congirmer" id="confirmer">Confirmer</a></div>
-          <?php }else{?>
-          <div id="c_bien_confirm">
-            <a href="about_us.php" name="congirmer" id="confirmer">Bien Confirmer</a></p>
-            <?php }?>
-          </div> 
-        </div>  
-           
+          </div>
+        </div>
 
         <div id="up"><a href="#top"><i class="fa fa-chevron-circle-up"></i></a></div>
 

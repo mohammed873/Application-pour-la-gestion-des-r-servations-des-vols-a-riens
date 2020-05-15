@@ -4,6 +4,7 @@ if(isset($rows)>0){
     $flyingFrom="";
     $flyingTo="";
         while($affiche=mysqli_fetch_array($l)){
+         
             $flyingFrom .= "<option value=". $affiche["flyingFrom"]."></option>";
             $flyingTo .= "<option value=".$affiche["flyingTo"]."></option>";
         }
@@ -62,7 +63,6 @@ if(isset($rows)>0){
         </form>
     </div>
     <br><br><br><br><br><br>
-   
     <hr>
        <h2 id="h2-title">Discover our serveces</h2>
     <hr>
