@@ -43,7 +43,6 @@ text-align: center;'> Welcome To Morocco AirLines  From ". $flying_from ." To ".
     $travel_class=$_POST["travel_class"];
     $price=$_POST["price"];
     $idAir=$_POST["id_air"];
-    $_SESSION["id"]=$_POST["id_reserver"];
     $request="INSERT INTO `reservation` VALUES($id_reservation,'$fullName','$phone','$email','$num_passport','$departing','$returning',$adults,$children,'$travel_class','$price','$idAir')";
     if(mysqli_query($con,$request)){
       $lastId=mysqli_insert_id($con);
@@ -56,22 +55,7 @@ text-align: center;'> Welcome To Morocco AirLines  From ". $flying_from ." To ".
 
 
    //showing the final details for reservation
-$id_reserver="";
-$IdReservation="";
-$fullName= "";
-$numTelephone="";
-$email= "";
-$numPassport="";
-$departingDate= "";
-$returningDate="";
-$Adult= "";
-$children="";
-$TravelClass= "";
-$Price= "";
-$flyingFrom= "";
-$flyingTo= "";
-$seats= "";
-$idAir="";
+if($_SERVER["PHP_SELF"]==='/Application-pour-la-gestion-des-r-servations-des-vols-a-riens/confirmer.php'){
 $request="select *, (Adult+children) as 'seats' from reservation,flights_list where flights_list.id=reservation.id_flight  AND reservation.id_reservation='$lastId'";
 $fetchRow=request($request);
 if(isset($fetchRow)){
@@ -91,6 +75,7 @@ $idAir=$readRow[12];
 $flyingFrom= $readRow[13];
 $flyingTo= $readRow[14];
 $seats=$readRow[18];
+}
 }
   //Modifier seats in table flights_list;
   $modifier=false;

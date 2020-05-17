@@ -3,7 +3,7 @@ include 'action.php';
 if(isset($rows)>0){
     $flyingFrom="";
     $flyingTo="";
-        while($affiche=mysqli_fetch_array($l)){
+        while($affiche=affiche($l)){
          
             $flyingFrom .= "<option value=". $affiche["flyingFrom"]."></option>";
             $flyingTo .= "<option value=".$affiche["flyingTo"]."></option>";
